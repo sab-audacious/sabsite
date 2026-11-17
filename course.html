@@ -115,11 +115,14 @@
       <p class="desc">Audacious opens in small cohorts. Join the waitlist and you'll be first to hear when dates and pricing go live — no spam, no funnel.</p>
     </div>
     <div class="reveal">
-      <form class="freebie-form" data-freebie-form action="https://assets.mailerlite.com/jsonp/1565123/forms/203707099518076335/subscribe" method="post">
+      <form class="freebie-form" data-freebie-form action="https://assets.mailerlite.com/jsonp/1565123/forms/203707099518076335/subscribe" method="post" target="ml_frame_waitlist">
         <label for="waitlist-email" class="visually-hidden">Email address</label>
-        <input id="waitlist-email" type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <input id="waitlist-email" type="email" name="fields[email]" placeholder="Email address" required autocomplete="email">
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
         <button type="submit">Join the waitlist →</button>
       </form>
+      <iframe name="ml_frame_waitlist" title="MailerLite" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
       <div class="freebie-success" role="status">You're on the list. I'll be in touch when the next cohort opens.</div>
       <p class="freebie-fineprint">No spam. Unsubscribe any time.</p>
     </div>

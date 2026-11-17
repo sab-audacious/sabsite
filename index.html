@@ -93,11 +93,14 @@
       <p class="desc">A short framework for turning a varied career into a clear position. No funnel — just the worksheet.</p>
     </div>
     <div class="reveal">
-      <form class="freebie-form" data-freebie-form action="https://assets.mailerlite.com/jsonp/1565123/forms/203706337704543257/subscribe" method="post">
+      <form class="freebie-form" data-freebie-form action="https://assets.mailerlite.com/jsonp/1565123/forms/203706337704543257/subscribe" method="post" target="ml_frame_freebie">
         <label for="freebie-email" class="visually-hidden">Email address</label>
-        <input id="freebie-email" type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <input id="freebie-email" type="email" name="fields[email]" placeholder="Email address" required autocomplete="email">
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
         <button type="submit">Send it →</button>
       </form>
+      <iframe name="ml_frame_freebie" title="MailerLite" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
       <div class="freebie-success" role="status">Sent. Check your inbox for the Narrative Builder.</div>
       <p class="freebie-fineprint">No spam. Unsubscribe any time.</p>
     </div>

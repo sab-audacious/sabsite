@@ -53,9 +53,9 @@
      submit handler once an ESP (ConvertKit, Mailchimp, etc.) is chosen. */
   document.querySelectorAll("[data-freebie-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
       var input = form.querySelector('input[type="email"]');
       if (input && !input.checkValidity()) {
+        e.preventDefault();
         input.reportValidity();
         return;
       }
@@ -63,22 +63,16 @@
       function showSuccess() {
         form.classList.add("is-hidden");
         if (success) success.classList.add("is-visible");
-        if (input) input.value = "";
       }
-      // If the form points at a real endpoint (MailerLite), send the email there
-      // first, then show the success state. Otherwise just show success (placeholder).
-      var endpoint = form.getAttribute("action");
-      if (endpoint && endpoint.indexOf("http") === 0 && input) {
-        var body = "fields[email]=" + encodeURIComponent(input.value) +
-                   "&ml-submit=1&anticsrf=true";
-        fetch(endpoint, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: body
-        }).then(showSuccess).catch(showSuccess);
+      var action = form.getAttribute("action");
+      if (action && action.indexOf("http") === 0) {
+        // Let the form POST natively into its hidden iframe — the reliable
+        // MailerLite submission — then show the success state.
+        setTimeout(showSuccess, 150);
       } else {
+        e.preventDefault();
         showSuccess();
+        if (input) input.value = "";
       }
     });
   });
